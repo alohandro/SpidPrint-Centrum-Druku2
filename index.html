@@ -1,140 +1,112 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpidPrint</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Ваш Сайт</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Основные стили для сайта */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: rgba(51, 51, 51, 0.9); /* Полупрозрачный фон */
+            padding: 10px 0; /* Отступы */
+            position: fixed; /* Фиксируем хедер */
+            top: 0; /* Устанавливаем сверху */
+            left: 0; /* Устанавливаем слева */
+            width: 100%; /* Занимаем всю ширину */
+            z-index: 100; /* Устанавливаем z-индекс выше других элементов */
+        }
+
+        nav ul {
+            list-style: none; /* Убираем маркеры списка */
+            padding: 0; /* Убираем внутренние отступы */
+            margin: 0; /* Убираем внешние отступы */
+            display: flex; /* Используем flex для горизонтального расположения */
+            justify-content: center; /* Центрируем содержимое */
+            gap: 20px; /* Промежуток между элементами */
+        }
+
+        nav ul li {
+            display: inline; /* Отображаем элементы в одной строке */
+        }
+
+        nav ul li a {
+            color: #fff; /* Цвет текста */
+            text-decoration: none; /* Убираем подчеркивание */
+            font-size: 18px; /* Размер шрифта */
+            padding: 10px 15px; /* Отступы вокруг текста */
+            transition: background-color 0.3s, color 0.3s; /* Плавный переход */
+        }
+
+        nav ul li a:hover {
+            background-color: #ff7e5f; /* Цвет фона при наведении */
+            border-radius: 5px; /* Закругленные углы */
+            color: #fff; /* Цвет текста при наведении */
+        }
+
+        /* Адаптация на телефон */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column; /* Меню в вертикальном направлении */
+                align-items: center; /* Центрируем элементы */
+                display: none; /* Скрываем меню по умолчанию */
+            }
+
+            nav.active ul {
+                display: flex; /* Показываем меню, когда оно активно */
+            }
+
+            .menu-toggle {
+                display: block; /* Показываем кнопку для открытия меню */
+                background-color: #ff7e5f; /* Цвет кнопки */
+                color: white; /* Цвет текста */
+                border: none; /* Без границы */
+                padding: 10px; /* Отступы */
+                cursor: pointer; /* Курсор в виде руки */
+            }
+        }
+
+        /* Кнопка для открытия меню */
+        .menu-toggle {
+            display: none; /* Скрываем кнопку по умолчанию */
+        }
+
+        /* Стили для активного состояния */
+        .active {
+            display: flex; /* Отображаем меню при активации */
+        }
+    </style>
 </head>
 <body>
     <header>
+        <button class="menu-toggle">Меню</button>
         <nav>
             <ul>
-                <li><a href="#home">Strona Główna</a></li>
-                <li><a href="#about">O nas</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-                <li><a href="#hours">Godziny Otwarcia</a></li>
-                <li><a href="https://www.facebook.com/profile.php?id=61566413371033" target="_blank">Facebook</a></li>
+                <li><a href="#">Strona Główna</a></li>
+                <li><a href="#">O nas</a></li>
+                <li><a href="#">Kontakt</a></li>
+                <li><a href="#">Godziny Otwarcia</a></li>
+                <li><a href="#">Facebook</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="hero" class="hero">
-        <div class="hero-content">
-            <h1>Twórz z nami swoje unikalne nadruki!</h1>
-            <p>W SpidPrint wierzymy, że każdy projekt ma swoją historię. Przenieś swoje pomysły na odzież i wyróżnij się w tłumie!</p>
-        </div>
-    </section>
-
-    <section id="offer" class="content-section">
-        <div class="offer-card">
-            <h2>Oferta</h2>
-            <div class="offer-wrapper">
-                <div class="offer-item">
-                    <h3>Druk na odzieży</h3>
-                    <p>Oferujemy szeroki wybór nadruków na odzieży, w tym koszulki, bluzy, czapki i inne. Nasze technologie druku zapewniają trwałość i żywe kolory.</p>
-                </div>
-                <div class="offer-item">
-                    <h3>Personalizowane nadruki</h3>
-                    <p>Stwórz swój własny design! Dzięki naszym usługom personalizacji możesz dodać własny tekst lub grafikę do odzieży.</p>
-                </div>
-                <div class="offer-item">
-                    <h3>Druk cyfrowy</h3>
-                    <p>Używamy nowoczesnych technologii druku cyfrowego, które umożliwiają realizację nawet najbardziej skomplikowanych projektów.</p>
-                </div>
-                <div class="offer-item">
-                    <h3>Odzież reklamowa</h3>
-                    <p>Produkujemy odzież reklamową dla firm, w tym koszulki z logo, torby i inne akcesoria promocyjne.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="content-section about-section">
-        <div class="about-wrapper">
-            <div class="about-image">
-                <img src="images/twoj_druk-removebg-preview.png" alt="Twój druk">
-            </div>
-            <div class="about-text">
-                <h2>O nas</h2>
-                <p>SpidPrint to firma, gdzie jakość spotyka się z kreatywnością. Oferujemy personalizowane rozwiązania – od logotypów firmowych po unikalne wzory. Każdy nadruk wykonujemy с dbałością o szczegóły и trwałość.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="content-section contact-section">
-        <div class="contact-card">
-            <h2>Kontakt</h2>
-            <p>Adres: Bartosza Głowackiego 27, 67-200 Głogów</p>
-            <p>Telefon: +48 694 594 202</p>
-            <p>Email: spidprintpl@gmail.com</p>
-            <p>
-                Lokałizacja w Google Maps: 
-                <a href="https://www.google.com/maps/place/SpidPrint+Centrum+Druku/@51.6624795,16.0780635,17z/data=!3m1!4b1!4m6!3m5!1s0x4705f5301e7a348d:0x603ef9a43c752ca9!8m2!3d51.6624795!4d16.0780635!16s%2Fg%2F11ltj7_2wl?hl=en&entry=ttu&g_ep=EgoyMDI0MDkyMi4wIKXMDSoASAFQAw%3D%3D&utm_medium=s2email&shorturl=1" target="_blank">SpidPrint Centrum Druku</a>
-            </p>
-        </div>
-    </section>
-
-    <section id="hours" class="content-section hours-section">
-        <div class="hours-card">
-            <h2>Godziny Otwarcia</h2>
-            <table>
-                <tr>
-                    <td>PONIEDZIAŁEK</td>
-                    <td>09:00 - 14:00</td>
-                </tr>
-                <tr>
-                    <td>WTOREK</td>
-                    <td>09:00 - 14:00</td>
-                </tr>
-                <tr>
-                    <td>ŚRODA</td>
-                    <td>09:00 - 14:00</td>
-                </tr>
-                <tr>
-                    <td>CZWARTEK</td>
-                    <td>09:00 - 14:00</td>
-                </tr>
-                <tr>
-                    <td>PIĄTEK</td>
-                    <td>09:00 - 14:00</td>
-                </tr>
-                <tr>
-                    <td>SOBOTA</td>
-                    <td>09:00 - 14:00</td>
-                </tr>
-                <tr>
-                    <td>NIEDZIELA</td>
-                    <td>Z A M K N I Ę T E</td>
-                </tr>
-            </table>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2023 SpidPrint. All rights reserved.</p>
-    </footer>
+    <main>
+        <!-- Здесь может быть ваш контент -->
+    </main>
 
     <script>
-        // Функция для анимации секций при скролле
-        function checkVisibility() {
-            const sections = document.querySelectorAll('.content-section');
-            const triggerBottom = window.innerHeight * 0.8;
-
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-
-                if (sectionTop < triggerBottom) {
-                    section.classList.add('visible');
-                } else {
-                    section.classList.remove('visible');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', checkVisibility);
-        checkVisibility(); // Проверка видимости при загрузке страницы
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('header nav').classList.toggle('active');
+        });
     </script>
 </body>
 </html>
