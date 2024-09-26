@@ -329,3 +329,27 @@ nav ul li a:hover {
         padding: 8px 10px; /* Уменьшаем отступы */
     }
 }
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #ff7e5f;
+    border-radius: 5px;
+    color: #fff;
+}
+
+/* Специальный стиль для кнопки "Strona Główna" */
+nav ul li a:first-child {
+    background-color: #4CAF50; /* Зеленый цвет для кнопки */
+    border-radius: 5px;
+}
+
+nav ul li a:first-child:hover {
+    background-color: #45a049; /* Темный зеленый при наведении */
+}
