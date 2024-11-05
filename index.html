@@ -11,10 +11,11 @@
     <header>
         <nav>
             <ul>
-                <li><a href="#" id="home-link">Strona Główna</a></li> <!-- Изменённый элемент для обновления страницы -->
+                <li><a href="#" id="home-link">Strona Główna</a></li>
                 <li><a href="#about">O nas</a></li>
                 <li><a href="#contact">Kontakt</a></li>
                 <li><a href="#hours">Godziny Otwarcia</a></li>
+                <li><a href="#order">Złóż zamówienie</a></li> <!-- Добавлен пункт меню для заказа -->
                 <li><a href="https://www.facebook.com/profile.php?id=61566413371033" target="_blank">Facebook</a></li>
             </ul>
         </nav>
@@ -109,6 +110,28 @@
                     <td>Z A M K N I Ę T E</td>
                 </tr>
             </table>
+        </div>
+    </section>
+
+    <section id="order" class="content-section order-section">
+        <div class="order-card">
+            <h2>Złóż zamówienie</h2>
+            <p>Wypełnij poniższy formularz, aby złożyć zamówienie na nasze usługi. Skontaktujemy się z Tobą jak najszybciej!</p>
+            <form id="order-form" action="https://formsubmit.co/spidprintpl@gmail.com" method="POST">
+                <label for="name">Imię i Nazwisko:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Numer telefonu:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="message">Wiadomość:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit" class="cta-btn">Wyślij zamówienie</button>
+            </form>
         </div>
     </section>
 
