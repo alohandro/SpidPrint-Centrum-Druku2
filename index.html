@@ -4,166 +4,296 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SpidPrint</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <!-- Шапка -->
     <header>
+        <h1>SpidPrint</h1>
         <nav>
             <ul>
-                <li><a href="#" id="home-link">Strona Główna</a></li>
-                <li><a href="#about">O nas</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-                <li><a href="#hours">Godziny Otwarcia</a></li>
-                <li><a href="#order">Złóż zamówienie</a></li> <!-- Добавлен пункт меню для заказа -->
-                <li><a href="https://www.facebook.com/profile.php?id=61566413371033" target="_blank">Facebook</a></li>
+                <li><a href="#">Strona Główna</a></li>
+                <li><a href="#moda">Ikony Stylu</a></li>
+                <li><a href="#dla-rybakow">Wędkarski Luz</a></li>
+                <li><a href="#z-zwierzetami">Dzika Natura</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+                <li><a href="cart.html" id="cart-button">Koszyk (<span id="cart-count">0</span>)</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="hero" class="hero">
-        <div class="hero-content">
-            <h1>Twórz z nami swoje unikalne nadruki!</h1>
-            <p>W SpidPrint wierzymy, że każdy projekt ma swoją historię. Przenieś swoje pomysły na odzież i wyróżnij się w tłumie!</p>
+    <!-- Раздел: Ikony Stylu -->
+    
+    
+    <section id="Ikony Stylu" class="category">
+        <h2>Ikony Stylu</h2>
+        <div class="products">
+
+            <div class="product">
+                <img src="img/BuiltDiffernet.jpg" alt="BuiltDiffernet">
+                <h3>Built Differnet</h3>
+                <p>Cena: 45 PLN</p>
+                <select class="size">
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>2XL</option>
+                    <option>3XL</option>
+                    <option>4XL</option>
+                    <option>5XL</option>
+                </select>
+                <button class="buy-button" data-product="BuiltDiffernet" data-price="45">Kupić</button>
+            </div>
+
+            <div class="product">
+                <img src="img/kontopg.jpeg" alt="Królewska Kobra">
+                <h3>Królewska Kobra</h3>
+                <p>Cena: 45 PLN</p>
+                <select class="size">
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>2XL</option>
+                    <option>3XL</option>
+                    <option>4XL</option>
+                    <option>5XL</option>
+                </select>
+                <button class="buy-button" data-product="Królewska Kobra" data-price="45">Kupić</button>
+            </div>
+
+            <div class="product">
+                <img src="img/slipknot.jpeg" alt="Slipknot">
+                <h3>Slipknot</h3>
+                <p>Cena: 45 PLN</p>
+                <select class="size">
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>2XL</option>
+                    <option>3XL</option>
+                    <option>4XL</option>
+                    <option>5XL</option>
+                </select>
+                <button class="buy-button" data-product="Slipknot" data-price="45">Kupić</button>
+            </div>
+
+            <div class="product">
+                <img src="img/thuglife.jpeg" alt="Thuglife">
+                <h3>Thuglife</h3>
+                <p>Cena: 45 PLN</p>
+                <select class="size">
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>2XL</option>
+                    <option>3XL</option>
+                    <option>4XL</option>
+                    <option>5XL</option>
+                </select>
+                <button class="buy-button" data-product="Thuglife" data-price="45">Kupić</button>
+            </div>
+
+            <div class="product">
+                <img src="img/topg.jpeg" alt="TopG">
+                <h3>TopG</h3>
+                <p>Cena: 45 PLN</p>
+                <select class="size">
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>2XL</option>
+                    <option>3XL</option>
+                    <option>4XL</option>
+                    <option>5XL</option>
+                </select>
+                <button class="buy-button" data-product="TopG" data-price="45">Kupić</button>
+            </div>
+
+            <div class="product">
+                <img src="img/zakonica.jpeg" alt="Zakonnica Rebel">
+                <h3>Zakonnica Rebel</h3>
+                <p>Cena: 45 PLN</p>
+                <select class="size">
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>2XL</option>
+                    <option>3XL</option>
+                    <option>4XL</option>
+                    <option>5XL</option>
+                </select>
+                <button class="buy-button" data-product="Zakonnica Rebel" data-price="45">Kupić</button>
+            </div>
+
+            <div class="product">
+                <img src="img/barbie.jpg" alt="Barbie">
+                <h3>Barbie</h3>
+                <p>Cena: 45 PLN</p>
+                <select class="size">
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>2XL</option>
+                    <option>3XL</option>
+                    <option>4XL</option>
+                    <option>5XL</option>
+                </select>
+                <button class="buy-button" data-product="Barbie" data-price="45">Kupić</button>
+            </div>
+
         </div>
+
+
     </section>
 
-    <section id="offer" class="content-section">
-        <div class="offer-card">
-            <h2>Oferta</h2>
-            <div class="offer-wrapper">
-                <div class="offer-item">
-                    <h3>Druk na odzieży</h3>
-                    <p>Oferujemy szeroki wybór nadruków na odzieży, w tym koszulki, bluzy, czapki i inne. Nasze technologie druku zapewniają trwałość i żywe kolory.</p>
-                </div>
-                <div class="offer-item">
-                    <h3>Personalizowane nadruki</h3>
-                    <p>Stwórz swój własny design! Dzięki naszym usługom personalizacji możesz dodać własny tekst lub grafikę do odzieży.</p>
-                </div>
-                <div class="offer-item">
-                    <h3>Druk cyfrowy</h3>
-                    <p>Używamy nowoczesnych technologii druku cyfrowego, które umożliwiają realizację nawet najbardziej skomplikowanych projektów.</p>
-                </div>
-                <div class="offer-item">
-                    <h3>Odzież reklamowa</h3>
-                    <p>Produkujemy odzież reklamową dla firm, w tym koszulki z logo, torby i inne akcesoria promocyjne.</p>
-                </div>
+    <!-- Раздел: Wędkarski Luz -->
+    <section id="Wędkarski Luz" class="category">
+        <h2>Wędkarski Luz</h2>
+        <div class="products">
+            <div class="product">
+                <img src="img/ryby_cycki.jpeg" alt="Rybne Żarty">
+                <h3>Rybne Żarty</h3>
+                <p>Cena: 43 PLN</p>
+                <select class="size">
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>2XL</option>
+                    <option>3XL</option>
+                    <option>4XL</option>
+                    <option>5XL</option>
+                </select>
+                <button class="buy-button" data-product="Rybne Żarty" data-price="43">Kupić</button>
+            </div>
+
+            <div class="product">
+                <img src="img/ryby_rano.jpeg" alt="Poranny Połów">
+                <h3>Poranny Połów</h3>
+                <p>Cena: 43 PLN</p>
+                <select class="size">
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>2XL</option>
+                    <option>3XL</option>
+                    <option>4XL</option>
+                    <option>5XL</option>
+                </select>
+                <button class="buy-button" data-product="Poranny Połów" data-price="43">Kupić</button>
             </div>
         </div>
     </section>
 
-    <section id="about" class="content-section about-section">
-        <div class="about-wrapper">
-            <div class="about-image">
-                <img src="images/twoj_druk-removebg-preview.png" alt="Twój druk">
+    <!-- Раздел: Dzika Natura -->
+    <section id="Dzika Natura" class="category">
+        <h2>Dzika Natura</h2>
+        <div class="products">
+            <div class="product">
+                <img src="img/kotek1.jpeg" alt="Czarujący Drapacz">
+                <h3>Czarujący Drapacz</h3>
+                <p>Cena: 43 PLN</p>
+                <select class="size">
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>2XL</option>
+                    <option>3XL</option>
+                    <option>4XL</option>
+                    <option>5XL</option>
+                </select>
+                <button class="buy-button" data-product="Czarujący Drapacz" data-price="43">Kupić</button>
             </div>
-            <div class="about-text">
-                <h2>O nas</h2>
-                <p>SpidPrint to firma, gdzie jakość spotyka się z kreatywnością. Oferujemy personalizowane rozwiązania – od logotypów firmowych po unikalne wzory. Każdy nadruk wykonujemy z dbałością o szczegóły i trwałość.</p>
+
+            <div class="product">
+                <img src="img/kotek2.jpeg" alt="Koci Król">
+                <h3>Koci Król</h3>
+                <p>Cena: 43 PLN</p>
+                <select class="size">
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>2XL</option>
+                    <option>3XL</option>
+                    <option>4XL</option>
+                    <option>5XL</option>
+                </select>
+                <button class="buy-button" data-product="Koci Król" data-price="43">Kupić</button>
+            </div>
+
+            <div class="product">
+                <img src="img/wilk1.jpeg" alt="Wilcza Energia">
+                <h3>Wilcza Energia</h3>
+                <p>Cena: 43 PLN</p>
+                <select class="size">
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>2XL</option>
+                    <option>3XL</option>
+                    <option>4XL</option>
+                    <option>5XL</option>
+                </select>
+                <button class="buy-button" data-product="Wilcza Energia" data-price="43">Kupić</button>
+            </div>
+
+            <div class="product">
+                <img src="img/wilk2.jpeg" alt="Alfa Wilk">
+                <h3>Alfa Wilk</h3>
+                <p>Cena: 43 PLN</p>
+                <select class="size">
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>2XL</option>
+                    <option>3XL</option>
+                    <option>4XL</option>
+                    <option>5XL</option>
+                </select>
+                <button class="buy-button" data-product="Alfa Wilk" data-price="43">Kupić</button>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="content-section contact-section">
-        <div class="contact-card">
-            <h2>Kontakt</h2>
-            <p>Adres: Bartosza Głowackiego 27, 67-200 Głogów</p>
-            <p>Telefon: +48 694 594 202</p>
-            <p>Email: spidprintpl@gmail.com</p>
-            <p>
-                Lokałizacja w Google Maps: 
-                <a href="https://www.google.com/maps/place/SpidPrint+Centrum+Druku/@51.6624795,16.0780635,17z/data=!3m1!4b1!4m6!3m5!1s0x4705f5301e7a348d:0x603ef9a43c752ca9!8m2!3d51.6624795!4d16.0780635!16s%2Fg%2F11ltj7_2wl?hl=en&entry=ttu&g_ep=EgoyMDI0MDkyMi4wIKXMDSoASAFQAw%3D%3D&utm_medium=s2email&shorturl=1" target="_blank">SpidPrint Centrum Druku</a>
-            </p>
+    <!-- Контакты -->
+    <footer id="kontakt">
+        <div class="container">
+            <p>&copy; 2025 SpidPrint. Wszelkie prawa zastrzeżone.</p>
+            <div class="contact-info">
+                <p>Kontakt: <a href="mailto:spidprintpl@gmail.com">spidprintpl@gmail.com</a></p>
+                <p>Instagram: <a href="https://www.instagram.com/spidprint" target="_blank">spidprint</a></p>
+            </div>
         </div>
-    </section>
-
-    <section id="hours" class="content-section hours-section">
-        <div class="hours-card">
-            <h2>Godziny Otwarcia</h2>
-            <table>
-                <tr>
-                    <td>PONIEDZIAŁEK</td>
-                    <td>09:00 - 14:00</td>
-                </tr>
-                <tr>
-                    <td>WTOREK</td>
-                    <td>09:00 - 14:00</td>
-                </tr>
-                <tr>
-                    <td>ŚRODA</td>
-                    <td>09:00 - 14:00</td>
-                </tr>
-                <tr>
-                    <td>CZWARTEK</td>
-                    <td>09:00 - 14:00</td>
-                </tr>
-                <tr>
-                    <td>PIĄTEK</td>
-                    <td>09:00 - 14:00</td>
-                </tr>
-                <tr>
-                    <td>SOBOTA</td>
-                    <td>09:00 - 14:00</td>
-                </tr>
-                <tr>
-                    <td>NIEDZIELA</td>
-                    <td>Z A M K N I Ę T E</td>
-                </tr>
-            </table>
-        </div>
-    </section>
-
-    <section id="order" class="content-section order-section">
-        <div class="order-card">
-            <h2>Złóż zamówienie</h2>
-            <p>Wypełnij poniższy formularz, aby złożyć zamówienie na nasze usługi. Skontaktujemy się z Tobą jak najszybciej!</p>
-            <form id="order-form" action="https://formsubmit.co/spidprintpl@gmail.com" method="POST">
-                <label for="name">Imię i Nazwisko:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="phone">Numer telefonu:</label>
-                <input type="tel" id="phone" name="phone" required>
-
-                <label for="message">Wiadomość:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
-
-                <button type="submit" class="cta-btn">Wyślij zamówienie</button>
-            </form>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2023 SpidPrint. All rights reserved.</p>
     </footer>
 
-    <script>
-        // Обработчик для обновления страницы при нажатии на "Strona Główna"
-        document.getElementById('home-link').addEventListener('click', function(event) {
-            event.preventDefault(); // Отменяем стандартное поведение ссылки
-            location.reload(); // Перезагружаем страницу
-        });
+    <!-- Подключение JavaScript -->
+    <script src="scripts.js"></script>
 
-        // Функция для анимации секций при скролле
-        function checkVisibility() {
-            const sections = document.querySelectorAll('.content-section');
-            const triggerBottom = window.innerHeight * 0.8;
-
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-
-                if (sectionTop < triggerBottom) {
-                    section.classList.add('visible');
-                } else {
-                    section.classList.remove('visible');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', checkVisibility);
-        checkVisibility(); // Проверка видимости при загрузке страницы
-    </script>
 </body>
 </html>
