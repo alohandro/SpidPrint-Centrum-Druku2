@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpidPrint - Koszyk</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header>
+        <h1>SpidPrint</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Strona Główna</a></li>
+                <li><a href="#moda">Moda</a></li>
+                <li><a href="#dla-rybakow">Dla Rybaków</a></li>
+                <li><a href="#z-zwierzetami">Z Zwierzętami</a></li>
+                <li><a href="cart.html" id="cart-button">Koszyk (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Раздел корзины -->
+    <section id="cart">
+        <h2>Twoja Korzystka</h2>
+
+        <div id="cart-items"></div>
+
+        
+
+        <div id="total-price">Cena całkowita: 0 PLN</div>
+
+        <button id="checkout-button">Złóż zamówienie</button>
+    </section>
+
+    <!-- Футер -->
+    <footer id="kontakt">
+        <div class="container">
+            <p>&copy; 2025 SpidPrint. Wszelkie prawa zastrzeżone.</p>
+            <div class="contact-info">
+                <p>Kontakt: <a href="mailto:spidprintpl@gmail.com">spidprintpl@gmail.com</a></p>
+                <p>Instagram: <a href="https://www.instagram.com/spidprint" target="_blank">spidprint</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>

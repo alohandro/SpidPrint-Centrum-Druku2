@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpidPrint - Odbiór Osobisty lub Płatność Kartą</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        h2, h3 {
+            color: #4CAF50;
+            text-align: center;
+        }
+
+        h3 {
+            margin-top: 10px;
+            font-size: 20px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+            color: #555;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #4CAF50;
+            outline: none;
+            background-color: #fff;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .order-summary {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .order-summary p {
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .order-summary strong {
+            font-size: 20px;
+            color: #4CAF50;
+        }
+
+        .card-details {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        #card-element {
+            height: 40px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 6px;
+            width: 100%;
+        }
+
+        #card-errors {
+            color: red;
+            margin-top: 10px;
+        }
+
+        #order-confirmation {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 20px;
+            color: green;
+            font-weight: 700;
+        }
+
+        #validation-error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .payment-method-section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Oformowanie zamówienia</h2>
+    <form id="payment-form">
+        <!-- Personal Details Section -->
+        <div class="form-section">
+            <h3>Informacje osobiste</h3>
+            <label for="first-name">Imię:</label>
+            <input type="text" id="first-name" name="first-name" required>
+
+            <label for="last-name">Nazwisko:</label>
+            <input type="text" id="last-name" name="last-name" required>
+
+            <label for="email">Adres e-mail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Numer telefonu:</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+
+        <!-- Shipping Address Section -->
+        <div class="form-section">
+            <h3>Adres dostawy</h3>
+            <label for="address">Ulica i numer domu:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="apartment">Numer mieszkania (opcjonalnie):</label>
+            <input type="text" id="apartment" name="apartment">
+
+            <label for="city">Miasto:</label>
+            <input type="text" id="city" name="city" required>
+
+            <label for="postal-code">Kod pocztowy:</label>
+            <input type="text" id="postal-code" name="postal-code" required>
+        </div>
+
+        <!-- Payment Method Selection -->
+        <div class="payment-method-section">
+            <label for="payment-method">Wybierz metodę płatności:</label>
+            <select id="payment-method">
+                <option value="card">Płatność kartą</option>
+                <option value="cash">Gotówka przy odbiorze</option>
+            </select>
+        </div>
+
+        <!-- Card Details for Stripe -->
+        <div id="card-details" class="card-details">
+            <label for="card-element">Dane karty</label>
+            <div id="card-element"></div>
+            <div id="card-errors" role="alert"></div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="submit-button">Złóż zamówienie</button>
+
+        <!-- Validation Error -->
+        <div id="validation-error"></div>
+    </form>
+
+    <!-- Order Summary Section -->
+    <div class="order-summary">
+        <p><strong>Koszt dostawy: 15 PLN</strong></p>
+        <p><strong>Całkowita suma: <span id="total-price">0</span> PLN</strong></p>
+    </div>
+
+    <!-- Order Confirmation -->
+    <div id="order-confirmation">
+        Twoje zamówienie zostało opłacone! Dziękujemy za zakupy.
+    </div>
+</div>
+
+<script>
+    const stripe = Stripe('pk_live_51QQ6bVJMFdQsEoomX9Jas8mguqAJh1BFZLJ7REOCYPnn5MldxdoUBNgL4XRL8xBOsr3YW95SyLH8d4SqguCf9cgN00v94n2aF0');
+    const elements = stripe.elements();
+    const cardElement = elements.create('card');
+    const cardDetails = document.getElementById('card-details');
+    const paymentMethodSelect = document.getElementById('payment-method');
+    const orderConfirmation = document.getElementById('order-confirmation');
+    const cardErrors = document.getElementById('card-errors');
+    const validationError = document.getElementById('validation-error');
+    const totalPriceElement = document.getElementById('total-price');
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || []; // Assume cart is stored in localStorage
+    const deliveryCost = 15;
+
+    // Calculate total price based on cart
+    function calculateTotalPrice() {
+        let total = 0;
+        cart.forEach(item => {
+            total += item.price * item.quantity;
+        });
+        total += deliveryCost; // Add delivery cost
+        totalPriceElement.textContent = total + " PLN"; // Update total price displayed on the page
+    }
+
+    // Update total price on page load
+    calculateTotalPrice();
+
+    // Mount the card element into the DOM
+    cardElement.mount('#card-element');
+
+    // Show/Hide card details based on selected payment method
+    paymentMethodSelect.addEventListener('change', function() {
+        if (this.value === 'card') {
+            cardDetails.style.display = 'block'; // Show card input fields
+        } else {
+            cardDetails.style.display = 'none'; // Hide card input fields
+        }
+    });
+
+    // Validate form data before submission
+    function validateForm() {
+        const firstName = document.getElementById('first-name').value;
+        const lastName = document.getElementById('last-name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const city = document.getElementById('city').value;
+        const postalCode = document.getElementById('postal-code').value;
+
+        if (!firstName || !lastName || !email || !phone || !address || !city || !postalCode) {
+            validationError.textContent = "Proszę uzupełnić wszystkie wymagane pola!";
+            return false;
+        }
+
+        validationError.textContent = "";
+        return true;
+    }
+
+    // Remove items from cart after successful order
+    function clearCart() {
+        localStorage.removeItem('cart'); // Clear cart in localStorage
+        cart = []; // Clear cart array
+    }
+
+    // Form submission handler
+    document.getElementById('payment-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        if (!validateForm()) return;
+
+        const paymentMethod = paymentMethodSelect.value;
+
+        const firstName = document.getElementById('first-name').value;
+        const lastName = document.getElementById('last-name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const apartment = document.getElementById('apartment').value;
+        const city = document.getElementById('city').value;
+        const postalCode = document.getElementById('postal-code').value;
+
+        const orderData = {
+            firstName,
+            lastName,
+            email,
+            phone,
+            address,
+            apartment,
+            city,
+            postalCode
+        };
+
+        if (paymentMethod === 'card') {
+            stripe.createPaymentMethod({
+                type: 'card',
+                card: cardElement,
+            }).then(function(result) {
+                if (result.error) {
+                    cardErrors.textContent = result.error.message;
+                } else {
+                    alert('Płatność kartą została przyjęta!');
+                    sendOrderEmail(orderData, 'card');
+                    showOrderConfirmation();
+                    clearCart(); // Clear the cart after payment
+                }
+            });
+        } else {
+            alert('Zamówienie zostało złożone. Można zapłacić gotówką przy odbiorze.');
+            sendOrderEmail(orderData, 'cash');
+            showOrderConfirmation();
+            clearCart(); // Clear the cart after cash on delivery
+        }
+    });
+
+    function sendOrderEmail(orderData, paymentMethod) {
+        fetch('/send-order-email.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ orderData, paymentMethod }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    function showOrderConfirmation() {
+        orderConfirmation.style.display = 'block';
+        setTimeout(function() {
+            window.location.href = '/'; // Redirect to the homepage
+        }, 3000); // After 3 seconds, redirect to the homepage
+    }
+</script>
+
+</body>
+</html>

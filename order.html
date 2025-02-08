@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oferujemy zakup</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Oferujemy zakup</h1>
+    <form id="checkout-form">
+        <label for="size">Wybierz rozmiar:</label>
+        <select id="size" name="size">
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="2X">2X</option>
+            <option value="3X">3X</option>
+            <option value="4X">4X</option>
+            <option value="5X">5X</option>
+        </select>
+
+        <label for="address">Adres dostawy:</label>
+        <input type="text" id="address" name="address" placeholder="Adres" required>
+
+        <button type="button" id="checkout-button">Przejdź do płatności</button>
+    </form>
+
+    <script>
+        // Инициализация Stripe
+        var stripe = Stripe('pk_live_51QQ6bVJMFdQsEoomX9Jas8mguqAJh1BFZLJ7REOCYPnn5MldxdoUBNgL4XRL8xBOsr3YW95SyLH8d4SqguCf9cgN00v94n2aF0');
+        var checkoutButton = document.getElementById('checkout-button');
+
+        checkoutButton.addEventListener('click', function () {
+            // Создание сессии Checkout на сервере
+            fetch('/create-checkout-session', {
+                method: 'POST',
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (sessionId) {
+                // Перенаправление на страницу Stripe Checkout
+                return stripe.redirectToCheckout({ sessionId: sessionId });
+            })
+            .then(function (result) {
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            })
+            .catch(function (error) {
+                console.error('Ошибка:', error);
+            });
+        });
+    </script>
+</body>
+</html>
