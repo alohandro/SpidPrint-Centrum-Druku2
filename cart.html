@@ -15,9 +15,9 @@
         <nav>
             <ul>
                 <li><a href="index.html">Strona Główna</a></li>
-                <li><a href="#moda">Moda</a></li>
-                <li><a href="#dla-rybakow">Dla Rybaków</a></li>
-                <li><a href="#z-zwierzetami">Z Zwierzętami</a></li>
+                <li><a href="#Ikony Stylu">Ikony Stylu</a></li>
+                <li><a href="#Wędkarski Luz">Wędkarski Luz</a></li>
+                <li><a href="#Dzika Natura">Dzika Natura</a></li>
                 <li><a href="cart.html" id="cart-button">Koszyk (<span id="cart-count">0</span>)</a></li>
             </ul>
         </nav>
@@ -28,26 +28,97 @@
         <h2>Twoja Korzystka</h2>
 
         <div id="cart-items"></div>
-
-        
-
         <div id="total-price">Cena całkowita: 0 PLN</div>
 
-        <button id="checkout-button">Złóż zamówienie</button>
+        <!-- Кнопка оформления заказа, скрыта при пустой корзине -->
+        <button id="checkout-button" style="display:none;">Złóż zamówienie</button>
+
+        <!-- Кнопка возврата на главную страницу -->
+        <button id="back-to-home" onclick="window.location.href='index.html'">Powrót na stronę główną</button>
     </section>
 
     <!-- Футер -->
     <footer id="kontakt">
         <div class="container">
-            <p>&copy; 2025 SpidPrint. Wszelkie prawa zastrzeżone.</p>
+            <p>&copy; 2025 Xclusive Store. Wszelkie prawa zastrzeżone.</p>
             <div class="contact-info">
-                <p>Kontakt: <a href="mailto:spidprintpl@gmail.com">spidprintpl@gmail.com</a></p>
-                <p>Instagram: <a href="https://www.instagram.com/spidprint" target="_blank">spidprint</a></p>
+                <p>Kontakt: <a href="mailto:xclusivestoreofficial@gmail.com">xclusivestoreofficial@gmail.com</a></p>
+                <p>Instagram: <a href="https://www.instagram.com/xclusivestoreofficial" target="_blank">xclusivestoreofficial</a></p>
             </div>
         </div>
     </footer>
 
     <script src="scripts.js"></script>
     <script src="cart.js"></script>
+
+    <script>
+        // Функция для обновления корзины
+        function updateCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCount = document.getElementById('cart-count');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const totalPriceElement = document.getElementById('total-price');
+            const checkoutButton = document.getElementById('checkout-button');
+
+            // Обновление количества товаров в корзине
+            cartCount.textContent = cart.length;
+
+            // Проверка на пустую корзину
+            if (cart.length === 0) {
+                checkoutButton.style.display = 'none';
+                cartItemsContainer.innerHTML = '<p>Twoja koszyk jest pusty.</p>';
+                totalPriceElement.textContent = 'Cena całkowita: 0 PLN';
+            } else {
+                // Отображаем товары и цену
+                let totalPrice = 0;
+                cartItemsContainer.innerHTML = ''; // Очистить контейнер товаров
+                cart.forEach((item, index) => {
+                    const itemElement = document.createElement('div');
+                    itemElement.innerHTML = `${item.name} - ${item.size} - ${item.quantity} szt. - ${item.price} PLN <button onclick="removeFromCart(${index})">Usuń</button>`;
+                    cartItemsContainer.appendChild(itemElement);
+                    totalPrice += item.price * item.quantity;
+                });
+                totalPriceElement.textContent = `Cena całkowita: ${totalPrice} PLN`;
+
+                // Показать кнопку оформления заказа
+                checkoutButton.style.display = 'block';
+            }
+        }
+
+        // Функция для удаления товара из корзины
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1); // Удаляем товар по индексу
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCart(); // Обновляем корзину
+        }
+
+        // Обновляем корзину при загрузке страницы
+        document.addEventListener('DOMContentLoaded', updateCart);
+
+        // Пример для кнопки "Kup"
+        document.querySelectorAll('.buy-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const product = button.dataset.product;
+                const price = button.dataset.price;
+                const size = button.previousElementSibling.value; // Получаем выбранный размер
+
+                const cartItem = {
+                    name: product,
+                    price: parseFloat(price),
+                    size: size,
+                    quantity: 1 // Можно добавить логику для увеличения количества
+                };
+
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push(cartItem);
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                // Обновляем количество в корзине
+                updateCart();
+            });
+        });
+    </script>
+
 </body>
 </html>
