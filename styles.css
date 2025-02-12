@@ -328,3 +328,111 @@ button:hover {
 #cart-container .cart-item .item-remove button:hover {
     background-color: #ff3b3b;
 }
+
+/* Общие стили для мобильных устройств */
+@media (max-width: 768px) {
+    /* Шапка */
+    header {
+        padding: 40px 20px;
+    }
+
+    header h1 {
+        font-size: 2.5rem; /* Уменьшение размера шрифта для мобильных */
+    }
+
+    /* Навигация */
+    nav ul {
+        flex-direction: column;
+        margin-top: 30px;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    nav ul li a {
+        font-size: 1.3rem;
+    }
+
+    /* Продукты */
+    .products {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product {
+        width: 100%;
+        max-width: 300px; /* Ограничиваем ширину товара */
+    }
+
+    .product img {
+        width: 100%;
+    }
+
+    /* Футер */
+    footer {
+        padding: 30px 20px;
+        font-size: 1rem;
+    }
+
+    /* Контактная информация */
+    .contact-info {
+        padding: 30px 20px;
+    }
+
+    /* Контейнер для товаров в корзине */
+    #cart-container {
+        padding: 20px;
+    }
+
+    #cart-container .cart-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #cart-container .cart-item img {
+        margin-bottom: 10px;
+    }
+
+    #cart-container .cart-item .item-info h4 {
+        font-size: 1.4rem;
+    }
+
+    #cart-container .cart-item .item-info p {
+        font-size: 1rem;
+    }
+}
+
+/* Стили для плавных переходов между разделами */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Стиль для иконок */
+.ikony-stylu {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+.ikony-stylu a {
+    font-size: 2rem;
+    color: #333;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.ikony-stylu a:hover {
+    color: #ffd700;
+    transform: scale(1.2);
+}
+
+/* Плавные переходы для секций */
+#fishing-lifestyle, #wild-nature {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+#fishing-lifestyle.visible, #wild-nature.visible {
+    opacity: 1;
+}
+
